@@ -1,0 +1,56 @@
+import { useEffect, useState } from "react";
+import API from "../services/api";
+import PostCard from "../components/postCard";
+import PostDialog from "../components/PostDialog";
+import Navbar from "../components/Navbar";
+import { toast } from "sonner";
+// import { post } from "../../../server/routes/postRoutes";
+
+export default function AdminDashboard() {
+    const [posts, setPosts] = useState<any[]>([]);
+
+    useEffect(() => { load(); }, []);
+
+    const load = async () => {
+        try {
+            const response = await API.get("/posts");
+            setPosts(response.data);
+        } catch (error) {
+            console.error("Error to loading posts:", error);
+            toast.error("Failed to load posts");
+        }
+    };
+
+    const createPost = async (post) => {
+        try {
+            const res = await API.post("/posts", post);
+            setPosts(prev => [res.data, ...prev]);
+            toast.success("Post created successfully");
+        } catch (error) {
+            toast.error("Error creating post:");
+        }
+    };
+
+    const togglePost = async (id) => {
+        try {
+            const task = posts.find(t => t._id === id);
+            const res = await API.put(`/tasks/${id}`, { completed: !task?.completed });
+            setPosts(prev => prev.map(t => (t._id === id ? res.data : t)));
+            toast.success("Post updated ✔️");
+        } catch (error) {
+            toast.error("Failed to post task");
+        }
+    };
+
+    const deleteTask = async (id) => {
+        try {
+            await API.delete(`/posts/${id}`);
+            setPosts(prev => prev.filter(t => t._id !== id));
+            toast.success("Post deleted 🗑️");
+        } catch (error) {
+            toast.error("Failed to delete Post");
+        }
+    };
+
+}
+   
