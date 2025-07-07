@@ -1,6 +1,7 @@
-import {Card, CaardHeader, CardContent, CardFooter, Button} from "@components/ui/card";
-import { CheckCircleIcon, TrashIconc}  from "@heroicons/react/24/solid";
+import {Card, CardHeader, CardContent, CardFooter } from "@components/ui/card";
+import { CheckCircleIcon, TrashIcon}  from "@heroicons/react/24/solid";
 import { Button } from "@components/ui/button";
+
 
 export default function PostCard({ post, onDelete }) {
     return (

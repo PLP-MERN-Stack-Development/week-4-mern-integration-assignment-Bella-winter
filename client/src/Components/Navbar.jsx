@@ -1,10 +1,10 @@
-import {link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 import { Button } from "@components/ui/button";
 import { DropdownMenu, DropdownMenuContent,
     DropdownMenuItem, DropdownMenuTrigger
  } from "@components/ui/dropdown-menu";
-import { UserCircle } from "@heroicons/react/24/solid";
+import { UserCircleIcon } from "@heroicons/react/24/solid";
 
 export default function Navbar() {
     const logout = () => {
@@ -25,7 +25,7 @@ export default function Navbar() {
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <Button variant="ghost" size="icon" aria-label="user menu">
-                                    <UserCircle className="h-6 w-6 text-gray-500 dark:text-gray-400" />
+                                    <UserCircleIcon className="h-6 w-6 text-gray-500 dark:text-gray-400" />
                                 </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">

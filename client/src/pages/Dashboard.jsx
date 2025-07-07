@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { postService } from "../services/api";
 import Navbar from "../components/Navbar";
-import PostCard from "../components/PostCard";
+import PostCard from "../Components/PostCard";
 import PostDialog from "../components/PostDialog";
 import { toast } from "sonner";
 
